@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Norman</title>
+	</head>
+	<body>
+		<input type="button" onClick="update()" value="Press Me"/>
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/1.1.0/firebase.js"></script>
+		<script type="text/javascript">
+			function update() {
+				var ref = new Firebase('https://dazzling-inferno-4333.firebaseio.com/counter');
+				ref.once('value', function (s) {
+				  var elem = s.val();
+
+				  console.log(elem);
+
+				  if (elem) {
+				  	ref.set(elem+1);
+				  } else {
+				  	ref.set(1);
+				  }
+				});
+			}
+		</script>
+	</body>
+</html>

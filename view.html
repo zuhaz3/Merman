@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>Norman</title>
+	</head>
+	<body>
+		<p id="count"></p>
+		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/1.1.0/firebase.js"></script>
+		<script type="text/javascript">
+			var ref = new Firebase('https://dazzling-inferno-4333.firebaseio.com/');
+
+			ref.on('child_added', function(s) {
+				if (s.val()) {
+					document.getElementById("count").innerHTML = s.val();
+				} else {
+					document.getElementById("count").innerHTML = "0";
+				}
+			});
+
+			ref.on('child_changed', function(s) {
+				console.log(s.val());
+
+				if (s.val()) {
+					document.getElementById("count").innerHTML = s.val();
+				} else {
+					document.getElementById("count").innerHTML = "0";
+				}
+			});
+		</script>
+	</body>
+</html>
